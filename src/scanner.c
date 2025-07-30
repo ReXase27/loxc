@@ -1,7 +1,5 @@
 #include "scanner.h"
 
-#include "common.h"
-
 #include <string.h>
 
 static bool is_at_end();

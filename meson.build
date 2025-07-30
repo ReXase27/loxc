@@ -12,7 +12,7 @@ executable(
     'src/value.c',
     'src/vm.c',
     'src/compiler.c',
-    'src/scanner.c'
+    'src/scanner.c',
   ],
   include_directories: incdir,
   c_args: [

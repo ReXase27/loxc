@@ -2,6 +2,9 @@
 
 #include "chunk.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 parser_t parser;
 chunk_t *compiling_chunk;
 
@@ -104,7 +107,7 @@ static void end_compiler()
 
 static void emit_return()
 {
-    emit_byte(TOKEN_RETURN);
+    emit_byte(OP_RETURN);
 }
 
 static void emit_bytes(uint8_t byte1, uint8_t byte2)
@@ -151,10 +154,7 @@ static void unary()
 {
     token_kind_t operator_kind = parser.previous.kind;
 
-    // FIX: possible bad prec parse here !!
     parse_precedence(PREC_UNARY);
-
-    expression();
 
     switch (operator_kind)
     {

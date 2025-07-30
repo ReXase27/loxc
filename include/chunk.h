@@ -1,9 +1,10 @@
 #pragma once
 
-#include "common.h"
 #include "value.h"
 
-typedef enum
+#include <stdint.h>
+
+typedef enum : uint8_t
 {
     OP_CONSTANT,
     OP_ADD,

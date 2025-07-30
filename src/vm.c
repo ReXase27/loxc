@@ -1,10 +1,11 @@
 #include "vm.h"
 
 #include "chunk.h"
-#include "common.h"
 #include "compiler.h"
 #include "debug.h"
 #include "value.h"
+
+#include <stdio.h>
 
 static interpret_result_t run();
 

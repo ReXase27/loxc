@@ -1,9 +1,10 @@
 #pragma once
 
 #include "chunk.h"
-#include "common.h"
 #include "scanner.h"
 #include "value.h"
+
+#include <stdint.h>
 
 typedef struct
 {

@@ -3,6 +3,8 @@
 #include "chunk.h"
 #include "value.h"
 
+#include <stdio.h>
+
 static int simple_instruction(const char *name, int offset);
 static int constant_instruction(const char *name, chunk_t *chunk, int offset);
 
