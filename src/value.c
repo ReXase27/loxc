@@ -33,5 +33,5 @@ void free_value_array(value_array_t *varray)
 
 void print_value(value_t value)
 {
-    printf("%g", value);
+    printf("%g", AS_NUMBER(value));
 }
