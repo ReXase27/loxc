@@ -1,4 +1,3 @@
-//! https://craftinginterpreters.com/scanning-on-demand.html 16.1.2
 #include "vm.h"
 
 #include <stdio.h>
