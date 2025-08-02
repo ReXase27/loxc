@@ -49,7 +49,7 @@ static void error(const char *errmsg)
     error_at(&parser.previous, errmsg);
 }
 
-static void error_at(token_t *token, const char *errmsg)
+static void error_at(const token_t *token, const char *errmsg)
 {
     if (parser.panic_mode)
         return;

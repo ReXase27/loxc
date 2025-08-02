@@ -2,7 +2,7 @@
 
 #include "chunk.h"
 
-#define STACK_MAX 256
+static constexpr size_t STACK_MAX = 256;
 
 typedef struct
 {

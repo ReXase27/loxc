@@ -52,7 +52,7 @@ void advance();
 
 void error_at_current(const char *errmsg);
 void error(const char *errmsg);
-void error_at(token_t *token, const char *errmsg);
+void error_at(const token_t *token, const char *errmsg);
 
 void expression();
 void number();
