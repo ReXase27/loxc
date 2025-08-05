@@ -5,5 +5,5 @@ A bytecode virtual machine in C, following the book [Crafting Interpreters](http
 Not finished, progressing when I have time.
 
  Made using:
- - meson v.1.8.2
+ - CMake v4.0.3
  - clang v20.1.8
