@@ -13,7 +13,7 @@ void init_value_array(value_array_t *varray)
 
 void write_value_array(value_array_t *varray, value_t value)
 {
-    if (varray->capacity < varray->count + 1)
+    if (varray->capacity < (size_t)varray->count + 1)
     {
         size_t old_capacity = varray->capacity;
         varray->capacity = GROW_CAPACITY(old_capacity);

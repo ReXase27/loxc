@@ -25,7 +25,7 @@ void free_chunk(chunk_t *chunk)
 
 void write_chunk(chunk_t *chunk, uint8_t byte, int line)
 {
-    if (chunk->capacity < chunk->count + 1)
+    if (chunk->capacity < (size_t)chunk->count + 1)
     {
         size_t old_capacity = chunk->capacity;
         chunk->capacity = GROW_CAPACITY(old_capacity);

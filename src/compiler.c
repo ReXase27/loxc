@@ -25,7 +25,7 @@ bool compile(const char *source, chunk_t *chunk)
     return !parser.had_error;
 }
 
-static void advance()
+void advance()
 {
     parser.previous = parser.current;
 
@@ -39,17 +39,17 @@ static void advance()
     }
 }
 
-static void error_at_current(const char *errmsg)
+void error_at_current(const char *errmsg)
 {
     error_at(&parser.previous, errmsg);
 }
 
-static void error(const char *errmsg)
+void error(const char *errmsg)
 {
     error_at(&parser.previous, errmsg);
 }
 
-static void error_at(const token_t *token, const char *errmsg)
+void error_at(const token_t *token, const char *errmsg)
 {
     if (parser.panic_mode)
         return;
@@ -74,7 +74,7 @@ static void error_at(const token_t *token, const char *errmsg)
     parser.had_error = true;
 }
 
-static void consume(token_kind_t kind, const char *message)
+void consume(token_kind_t kind, const char *message)
 {
     if (parser.current.kind == kind)
     {
@@ -85,17 +85,17 @@ static void consume(token_kind_t kind, const char *message)
     error_at_current(message);
 }
 
-static void emit_byte(uint8_t byte)
+void emit_byte(uint8_t byte)
 {
     write_chunk(current_chunk(), byte, parser.previous.line);
 }
 
-static chunk_t *current_chunk()
+chunk_t *current_chunk()
 {
     return compiling_chunk;
 }
 
-static void end_compiler()
+void end_compiler()
 {
     emit_return();
 #ifdef DEBUG_PRINT_CODE
@@ -105,23 +105,23 @@ static void end_compiler()
 #endif
 }
 
-static void emit_return()
+void emit_return()
 {
     emit_byte(OP_RETURN);
 }
 
-static void emit_bytes(uint8_t byte1, uint8_t byte2)
+void emit_bytes(uint8_t byte1, uint8_t byte2)
 {
     emit_byte(byte1);
     emit_byte(byte2);
 }
 
-static void emit_constant(value_t value)
+void emit_constant(value_t value)
 {
     emit_bytes(OP_CONSTANT, make_constant(value));
 }
 
-static uint8_t make_constant(value_t value)
+uint8_t make_constant(value_t value)
 {
     int constant = add_constant(current_chunk(), value);
     if (constant > UINT8_MAX)
@@ -133,24 +133,24 @@ static uint8_t make_constant(value_t value)
     return (uint8_t)constant;
 }
 
-static void expression()
+void expression()
 {
     parse_precedence(PREC_ASSIGNMENT);
 }
 
-static void number()
+void number()
 {
     double value = strtod(parser.previous.start, NULL);
     emit_constant(NUMBER_VAL(value));
 }
 
-static void grouping()
+void grouping()
 {
     expression();
     consume(TOKEN_RIGHT_PAREN, "Expect ')' after expression.");
 }
 
-static void unary()
+void unary()
 {
     token_kind_t operator_kind = parser.previous.kind;
 
@@ -209,7 +209,7 @@ static const parse_rule_t rules[] = {
     [TOKEN_EOF] = {NULL, NULL, PREC_NONE},
 };
 
-static void binary()
+void binary()
 {
     token_kind_t operator_kind = parser.previous.kind;
 
@@ -236,7 +236,7 @@ static void binary()
     }
 }
 
-static void parse_precedence(precedence_t precedence)
+void parse_precedence(precedence_t precedence)
 {
     advance();
     parse_fn prefix_rule = get_rule(parser.previous.kind)->prefix;
@@ -257,7 +257,7 @@ static void parse_precedence(precedence_t precedence)
     }
 }
 
-static const parse_rule_t *get_rule(token_kind_t operator_kind)
+const parse_rule_t *get_rule(token_kind_t operator_kind)
 {
     return &rules[operator_kind];
 }
