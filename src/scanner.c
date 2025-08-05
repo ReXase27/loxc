@@ -186,8 +186,7 @@ static bool is_digit(char c)
 
 static bool is_alpha(char c)
 {
-    // LOL.
-    return (c >= 'a' && c <= 'z') || (c >= 'A' && c >= 'Z') || c == '_';
+    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_';
 }
 
 static token_t string()

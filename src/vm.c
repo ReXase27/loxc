@@ -132,11 +132,12 @@ static interpret_result_t run()
             BINARY_OP(NUMBER_VAL, /);
             break;
         case OP_NEGATE:
-            if (!IS_NUMBER(pop()))
+            auto value = pop();
+            if (!IS_NUMBER(value))
             {
                 return INTERPRET_RUNTIME_ERROR;
             }
-            push(NUMBER_VAL(-AS_NUMBER(pop())));
+            push(NUMBER_VAL(-AS_NUMBER(value)));
             break;
         case OP_RETURN: {
             print_value(pop());
